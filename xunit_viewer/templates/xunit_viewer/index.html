@@ -1,3 +1,7 @@
+{% extends "xunit_viewer/base.html" %}
+
+{% block content %}
+
 {% if projects %}
 Projects:
 <ul>
@@ -8,3 +12,5 @@ Projects:
 {% else %}
 <p>No projects!</p>
 {% endif %}
+
+{% endblock content %}

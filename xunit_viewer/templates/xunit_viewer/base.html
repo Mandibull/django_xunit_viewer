@@ -1,0 +1,18 @@
+{% load staticfiles %}<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>xunit viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'xunit_viewer/css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'xunit_viewer/css/skeleton.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'xunit_viewer/css/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'xunit_viewer/images/favicon.png' %}">
+  </head>
+  <body>
+    {% block content %}{% endblock content %}
+    <script src="{% static 'xunit_viewer/js/jquery-2.1.4.min.js' %}"></script>
+    {% block js_post %}
+    {% endblock js_post %}
+  </body>
+</html>

@@ -12,8 +12,11 @@ class Project(models.Model):
 class TestResult(models.Model):
     project = models.ForeignKey(Project)
     xml_file = models.TextField()
-    json_results = models.TextField()
+    json_results = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return '{} {}'.format(self.project.name, self.date)
+
+    class Meta:
+        ordering = ('date',)

@@ -1,0 +1,44 @@
+{% extends "xunit_viewer/base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="container">
+  <h1>{{ test_result.project.name }} @ {{ test_result.date }}</h1>
+  <canvas id="pie_chart" width="80" height="80"></canvas>
+  <p>debug: {{ results.stats.tests }} reported vs {{ results.tests | length }} tests in list!</p>
+
+  {% for r in results.tests %}
+  <h6 class="title">{{ r.name }}</h6>
+  <div class="indent">
+    <p>class: <code>{{ r.class_name }}</code></p>
+    <p>time: {{ r.time }}s</p>
+
+    {% if r.error_message %}
+    <div class="code_header_container">
+      <div class="code_header">Error Message</div>
+      <code class="block_scroll">{{ r.error_message | linebreaksbr }}</code>
+    </div>
+    {% endif %}
+
+    {% if r.error_message %}
+    <div class="code_header_container">
+      <div class="code_header">Error Data</div>
+      <code class="block_scroll">{{ r.error_data | linebreaksbr }}</code>
+    </div>
+    {% endif %}
+
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock content %}
+
+{% block js_post %}
+<script src="{% static 'xunit_viewer/js/Chart.min.js' %}"></script>
+<script>
+stats = {{ results.stats | safe }};
+</script>
+<script src="{% static 'xunit_viewer/js/test_results.js' %}"></script>
+{% endblock %}

@@ -1,1 +1,17 @@
-<p>Hello World!</p>
+{% extends "xunit_viewer/base.html" %}
+
+{% block content %}
+
+<h1>{{ project.name }}</h1>
+
+<h2>Recent tests:</h2>
+{% if project.testresult_set.all %}
+<ul>
+  {% for test in project.testresult_set.all %}
+  <li><a href="{% url 'test_result' test.pk %}">{{ test.date | timesince }} ago</a></li>
+  {% endfor %}
+{% else %}
+<p>No test results registered yet!</p>
+{% endif %}
+
+{% endblock content %}
